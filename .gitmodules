@@ -1,0 +1,6 @@
+[submodule "BLASLIBS/OpenBLAS"]
+	path = BLASLIBS/OpenBLAS
+	url = https://github.com/OpenMathLib/OpenBLAS.git
+[submodule "BLASLIBS/blis"]
+	path = BLASLIBS/blis
+	url = https://github.com/flame/blis.git
