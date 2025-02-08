@@ -13,6 +13,13 @@ cd BLASLIBS/blis/
 make -j8
 make install
 ```
+## How to build this benchmark
+```bash
+mkdir build
+cd build
+cmake ..
+make benchmark*
+```
 ## Multithreading
 ```bash
 # thread to core affinity
