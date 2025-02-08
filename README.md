@@ -15,7 +15,7 @@ make install
 ```
 ## Multithreading
 ```bash
-# thread to core affinety
+# thread to core affinity
 export OMP_PROC_BIND=close
 export OMP_PLACES=cores
 
