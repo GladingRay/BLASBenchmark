@@ -5,3 +5,6 @@
 BLASINSTALL/*
 !./BLASINSTALL/OpenBLAS/README.md
 !./BLASINSTALL/blis/README.md
+
+.vscode
+build
