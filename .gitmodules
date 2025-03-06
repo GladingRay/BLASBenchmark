@@ -4,3 +4,6 @@
 [submodule "BLASLIBS/blis"]
 	path = BLASLIBS/blis
 	url = https://github.com/flame/blis.git
+[submodule "third_tools/cpufp"]
+	path = third_tools/cpufp
+	url = git@github.com:pigirons/cpufp.git
