@@ -4,7 +4,12 @@ project(BLASBenchmark VERSION 1.0 LANGUAGES CXX)
 set(CXX_STANDARD_REQUIRED 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
 
-include(${CMAKE_CURRENT_BINARY_DIR}/config.cmake)
+if (EXISTS ${CMAKE_CURRENT_BINARY_DIR}/config.cmake)
+    message(STATUS "Build with config.cmake")
+    include(${CMAKE_CURRENT_BINARY_DIR}/config.cmake)
+else()
+    message(WARING "Build without config.cmake, please check cmdargs.")
+endif()
 
 include(ExternalProject)
 
