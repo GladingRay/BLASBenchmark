@@ -8,3 +8,5 @@ BLASINSTALL/*
 
 .vscode
 build
+
+BLASLIBS/blis/blis.pc
