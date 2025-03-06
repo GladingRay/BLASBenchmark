@@ -1,24 +1,17 @@
 # BLASBenchmark
-Benchmark for some open source BLAS lib
-## How to build and install OpenBLAS
+Benchmark for some open source BLAS libs.
+## How to clone
 ```bash
-cd BLASLIBS/OpenBLAS/
-make -j8
-make PREFIX=../../BLASINSTALL/OpenBLAS/ install
+git clone --recurse-submodules https://github.com/GladingRay/BLASBenchmark.git
 ```
-## How to build and install blis
-```bash
-cd BLASLIBS/blis/
-./configure -p ../../BLASINSTALL/blis --enable-static --enable-shared -t openmp --enable-blas --enable-cblas zen3
-make -j8
-make install
-```
-## How to build this benchmark
+## How to build
 ```bash
 mkdir build
 cd build
 cmake ..
-make benchmark*
+make benchmark_OpenBLAS
+make benchmark_blis
+make cpufp_bin # build cpufp
 ```
 ## Multithreading
 ```bash
@@ -49,3 +42,8 @@ Thread Pool Binding: 0
 | SSE             | ADD(MUL(f32,f32),f32) | 68.256 GFLOPS    |
 | SSE2            | ADD(MUL(f64,f64),f64) | 32.769 GFLOPS    |
 
+## Reference & Acknowledge
+- [cpufp](https://github.com/pigirons/cpufp)
+- [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS)
+- [blis](https://github.com/flame/blis)
+- 感谢AI
