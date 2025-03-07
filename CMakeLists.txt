@@ -1,3 +1,7 @@
+# config options:
+# CMAKE_BUILD_TYPE  : [Release/Debug]
+# CPUFP_BUILD_ARCH  : [arm64/e2k/loogarch64/riscv64/x64]
+
 cmake_minimum_required(VERSION 3.5)
 project(BLASBenchmark VERSION 1.0 LANGUAGES CXX)
 
@@ -45,7 +49,7 @@ ExternalProject_Add(
     cpufp_bin
     SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_tools/cpufp
     CONFIGURE_COMMAND ""
-    BUILD_COMMAND ./build_x64.sh
+    BUILD_COMMAND ./build_${CPUFP_BUILD_ARCH}.sh
     INSTALL_COMMAND mv ./cpufp ${CMAKE_CURRENT_BINARY_DIR}
     BUILD_IN_SOURCE TRUE
 )
