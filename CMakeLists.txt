@@ -50,10 +50,12 @@ ExternalProject_Add(
     BUILD_IN_SOURCE TRUE
 )
 
-set(BLISINC_PATH ${CMAKE_SOURCE_DIR}/BLASINSTALL/blis/include/)
-set(BLISLIB ${CMAKE_SOURCE_DIR}/BLASINSTALL/blis/lib/libblis.a)
-set(OpenBLASINC_PATH ${CMAKE_SOURCE_DIR}/BLASINSTALL/OpenBLAS/include/)
-set(OpenBLASLIB ${CMAKE_SOURCE_DIR}/BLASINSTALL/OpenBLAS/lib/libopenblas.a)
+set(BLIS_INSTALL_PATH ${CMAKE_SOURCE_DIR}/BLASINSTALL/blis/)
+set(OpenBLAS_INSTALL_PATH ${CMAKE_SOURCE_DIR}/BLASINSTALL/OpenBLAS/)
+set(BLISINC_PATH ${BLIS_INSTALL_PATH}/include/)
+set(BLISLIB ${BLIS_INSTALL_PATH}/lib/libblis.a)
+set(OpenBLASINC_PATH ${OpenBLAS_INSTALL_PATH}/include/)
+set(OpenBLASLIB ${OpenBLAS_INSTALL_PATH}/lib/libopenblas.a)
 
 add_executable(benchmark_OpenBLAS src/benchmark.cc)
 target_link_libraries(benchmark_OpenBLAS PRIVATE ${OpenBLASLIB})
@@ -67,3 +69,12 @@ target_compile_definitions(benchmark_blis PRIVATE USE_BLIS)
 
 add_dependencies(benchmark_OpenBLAS OpenBLASLib)
 add_dependencies(benchmark_blis BLISLib)
+
+add_custom_target(uninstallblas
+    COMMAND rm -rf ${OpenBLAS_INSTALL_PATH}/include ${OpenBLAS_INSTALL_PATH}/bin
+                    ${OpenBLAS_INSTALL_PATH}/lib ${BLIS_INSTALL_PATH}/include
+                    ${BLIS_INSTALL_PATH}/lib ${BLIS_INSTALL_PATH}/share
+    COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR}/BLASLIBS/OpenBLAS clean
+    COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR}/BLASLIBS/blis clean
+    COMMENT "Uninstall OpenBLAS and blis."
+)
