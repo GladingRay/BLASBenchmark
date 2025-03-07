@@ -57,7 +57,7 @@ for(;n_count>3;n_count-=4) COMPUTE(4)
 for(;n_count>1;n_count-=2) COMPUTE(2)
 if(n_count>0) COMPUTE(1)
 ```
-从这里看B矩阵在N方向上的切分方式是23->(12+10+1)，而不是(12+11)，B矩阵的打包也采用一样的划分方式，不太好生成。
+从这里看B矩阵在N方向上的切分方式是23->(12+10+1)，而不是(12+11)，[B矩阵的打包](BLASLIBS/OpenBLAS/kernel/generic/gemm_ncopy_2.c)没管这些就直接切成了(10*2+1)，可能在COMPUTE宏里也把12,10,8,6,4,2当成x个2来算的（vscode调试跳不进宏定义里面，blis整个只能在接口附近转圈圈，不知道是不是我哪里没用对。。。）
 
 ## Reference & Acknowledge
 - [cpufp](https://github.com/pigirons/cpufp)
