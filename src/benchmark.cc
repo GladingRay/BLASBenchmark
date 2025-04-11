@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 {
     if (argc < 6)
     {
-        printf("Usage: %s trans_lhs trans_rhs m n k", argv[0]);
+        printf("Usage: %s trans_lhs trans_rhs m n k\n", argv[0]);
         exit(1);
     }
 

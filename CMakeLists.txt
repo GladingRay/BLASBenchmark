@@ -12,7 +12,7 @@ if (EXISTS ${CMAKE_CURRENT_BINARY_DIR}/config.cmake)
     message(STATUS "Build with config.cmake")
     include(${CMAKE_CURRENT_BINARY_DIR}/config.cmake)
 else()
-    message(WARING "Build without config.cmake, please check cmdargs.")
+    message(WARNING "Build without config.cmake, please check cmdargs.")
 endif()
 
 include(ExternalProject)
@@ -50,7 +50,7 @@ ExternalProject_Add(
     SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_tools/cpufp
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ./build_${CPUFP_BUILD_ARCH}.sh
-    INSTALL_COMMAND mv ./cpufp ${CMAKE_CURRENT_BINARY_DIR}
+    INSTALL_COMMAND "mv ./cpufp ${CMAKE_CURRENT_BINARY_DIR} && sh clean.sh"
     BUILD_IN_SOURCE TRUE
 )
 
@@ -77,7 +77,7 @@ add_dependencies(benchmark_blis BLISLib)
 add_custom_target(uninstallblas
     COMMAND rm -rf ${OpenBLAS_INSTALL_PATH}/include ${OpenBLAS_INSTALL_PATH}/bin
                     ${OpenBLAS_INSTALL_PATH}/lib ${BLIS_INSTALL_PATH}/include
-                    ${BLIS_INSTALL_PATH}/lib ${BLIS_INSTALL_PATH}/share
+                    ${BLIS_INSTALL_PATH}/lib ${BLIS_INSTALL_PATH}/share ${CMAKE_BINARY_DIR}/cpufp
     COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR}/BLASLIBS/OpenBLAS clean
     COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR}/BLASLIBS/blis clean
     COMMENT "Uninstall OpenBLAS and blis."
