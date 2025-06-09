@@ -50,7 +50,7 @@ ExternalProject_Add(
     SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_tools/cpufp
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ./build_${CPUFP_BUILD_ARCH}.sh
-    INSTALL_COMMAND "mv ./cpufp ${CMAKE_CURRENT_BINARY_DIR} && sh clean.sh"
+    INSTALL_COMMAND mv ./cpufp ${CMAKE_CURRENT_BINARY_DIR} && sh clean.sh
     BUILD_IN_SOURCE TRUE
 )
 
